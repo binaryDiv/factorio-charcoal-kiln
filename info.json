@@ -1,0 +1,13 @@
+{
+    "name": "charcoal-kiln",
+    "version": "0.0.1",
+    "title": "Charcoal Kiln (WIP)",
+    "author": "binaryDiv",
+    "contact": "factorio@binarydiv.dev",
+    "homepage": "https://github.com/binaryDiv/factorio-charcoal-kiln",
+    "description": "Adds a charcoal kiln that makes coal from wood and wooden objects.",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "base >= 2.0"
+    ]
+}
