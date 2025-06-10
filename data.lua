@@ -1,4 +1,6 @@
-require("prototypes/entities.lua")
-require("prototypes/items.lua")
-require("prototypes/recipes.lua")
-require("prototypes/technologies.lua")
+require("prototypes.entities")
+require("prototypes.items")
+require("prototypes.technologies")
+
+-- Technology must be created before charcoal recipes are generated
+require("prototypes.recipes")

@@ -8,9 +8,7 @@ local charcoal_kiln_tech = {
     icon_size = 256,
     effects = {
         { type = "unlock-recipe", recipe = "charcoal-kiln" },
-        { type = "unlock-recipe", recipe = "charcoal-from-wood" },
-        { type = "unlock-recipe", recipe = "charcoal-from-wooden-chest" },
-        { type = "unlock-recipe", recipe = "charcoal-from-small-electric-pole" },
+        -- Charcoal recipes are added in prototypes.recipes
     },
     unit = {
         count = 30,

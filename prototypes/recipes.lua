@@ -1,34 +1,6 @@
--- Helper function to generate charcoal recipes, e.g. "charcoal from wooden chest".
--- Generates a layered icon consisting of the coal icon and an offset icon of the ingredient (must be set if it's not
--- a base item).
-local function generate_charcoal_recipe(order, from_item, from_amount, to_amount, from_icon)
-    if not from_icon then
-        from_icon = "__base__/graphics/icons/" .. from_item .. ".png"
-    end
+local charcoal_kiln_lib = require("__charcoal-kiln__.lib")
 
-    return {
-        type = "recipe",
-        name = "charcoal-from-" .. from_item,
-        category = "charcoal-kiln",
-        subgroup = "charcoal",
-        order = "a[charcoal]-" .. order .. "[" .. from_item .. "]",
-        icons = {
-            { icon = "__base__/graphics/icons/coal.png", shift = { 4, 4 } },
-            { icon = from_icon, scale = 0.33, shift = { -6, -6 } },
-        },
-        enabled = false,
-        energy_required = 3.2,
-        ingredients = {
-            { type = "item", name = from_item, amount = from_amount },
-        },
-        results = {
-            { type = "item", name = "coal", amount = to_amount },
-        },
-        auto_recycle = false,
-    }
-end
-
--- Add new recipe prototypes
+-- Add recipe for the charcoal kiln itself, as well as the recipe category and item subgroup
 data:extend {
     -- Recipe for crafting the charcoal kiln
     {
@@ -57,9 +29,32 @@ data:extend {
         -- Sort right after the "raw-resources" subgroup which has order "b"
         order = "b-b[charcoal]",
     },
-
-    -- Recipes to make charcoal from wood and other wooden items
-    generate_charcoal_recipe("a", "wood", 1, 1),
-    generate_charcoal_recipe("b", "wooden-chest", 1, 1),
-    generate_charcoal_recipe("c", "small-electric-pole", 2, 1),
 }
+
+-- Generate recipes for charcoal from wood and other wooden items (if they exist)
+-- This also adds the new recipes to the effects of the charcoal kiln technology.
+if data.raw.item["wood"] then
+    charcoal_kiln_lib.add_charcoal_recipe {
+        order = "a-a[wood]",
+        from_item = "wood",
+        from_icon = "__base__/graphics/icons/wood.png",
+    }
+end
+
+if data.raw.item["wooden-chest"] then
+    charcoal_kiln_lib.add_charcoal_recipe {
+        order = "b-a[wooden-chest]",
+        from_item = "wooden-chest",
+        from_icon = "__base__/graphics/icons/wooden-chest.png",
+    }
+end
+
+if data.raw.item["small-electric-pole"] then
+    charcoal_kiln_lib.add_charcoal_recipe {
+        order = "c-a[small-electric-pole]",
+        from_item = "small-electric-pole",
+        from_icon = "__base__/graphics/icons/small-electric-pole.png",
+        from_amount = 2,
+        to_amount = 1,
+    }
+end
