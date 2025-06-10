@@ -9,7 +9,7 @@ local function generate_charcoal_recipe(order, from_item, from_amount, to_amount
     return {
         type = "recipe",
         name = "charcoal-from-" .. from_item,
-        category = "charcoal",
+        category = "charcoal-kiln",
         subgroup = "charcoal",
         order = "a[charcoal]-" .. order .. "[" .. from_item .. "]",
         icons = {
@@ -46,7 +46,7 @@ data:extend {
     -- Recipe category for making charcoal
     {
         type = "recipe-category",
-        name = "charcoal",
+        name = "charcoal-kiln",
     },
 
     -- Subgroup for charcoal recipes

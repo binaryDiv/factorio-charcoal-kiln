@@ -12,9 +12,9 @@ charcoal_kiln.fast_replaceable_group = nil
 charcoal_kiln.next_upgrade = nil
 
 -- Use special recipe category
-charcoal_kiln.crafting_categories = { "charcoal" }
+charcoal_kiln.crafting_categories = { "charcoal-kiln" }
 
--- Reduce energy usage
+-- Reduce energy usage (stone furnace: 90kW)
 charcoal_kiln.energy_usage = "60kW"
 
 -- Override graphics
