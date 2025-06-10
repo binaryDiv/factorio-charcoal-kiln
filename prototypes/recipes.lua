@@ -12,6 +12,10 @@ local function generate_charcoal_recipe(order, from_item, from_amount, to_amount
         category = "charcoal",
         subgroup = "charcoal",
         order = "a[charcoal]-" .. order .. "[" .. from_item .. "]",
+        icons = {
+            { icon = "__base__/graphics/icons/coal.png", shift = { 4, 4 } },
+            { icon = from_icon, scale = 0.33, shift = { -6, -6 } },
+        },
         enabled = false,
         energy_required = 3.2,
         ingredients = {
@@ -20,18 +24,7 @@ local function generate_charcoal_recipe(order, from_item, from_amount, to_amount
         results = {
             { type = "item", name = "coal", amount = to_amount },
         },
-        icons = {
-            {
-                icon = "__base__/graphics/icons/coal.png",
-                icon_size = 64,
-            },
-            {
-                icon = from_icon,
-                icon_size = 64,
-                scale = 0.33,
-                shift = { 8, -8 },
-            },
-        },
+        auto_recycle = false,
     }
 end
 
