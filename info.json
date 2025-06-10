@@ -8,6 +8,7 @@
     "description": "Adds a charcoal kiln that makes coal from wood and wooden objects.",
     "factorio_version": "2.0",
     "dependencies": [
-        "base >= 2.0"
+        "base >= 2.0",
+        "? space-age"
     ]
 }
