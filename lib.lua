@@ -24,6 +24,7 @@ local charcoal_kiln_lib = {}
 -- Easy access to startup settings
 charcoal_kiln_lib.settings = {
     enable_additional_recipes = settings.startup["charcoal-kiln-enable-additional-recipes"].value,
+    hide_charcoal_recipes = settings.startup["charcoal-kiln-hide-charcoal-recipes"].value,
 }
 
 -- Generate a prototype for a new charcoal recipe from a given input item, e.g. "Charcoal from wooden chest".
@@ -71,6 +72,11 @@ function charcoal_kiln_lib.generate_charcoal_recipe_prototype(params)
         recipe.icons = params.icon_override
     else
         recipe.icons = charcoal_kiln_lib.generate_charcoal_recipe_icon_spec(params.from_icon, params.from_icon_size)
+    end
+
+    -- Hide the recipe from the crafting menu (if setting is enabled)
+    if charcoal_kiln_lib.settings.hide_charcoal_recipes then
+        recipe.hide_from_player_crafting = true
     end
 
     return recipe
