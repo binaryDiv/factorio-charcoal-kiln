@@ -6,16 +6,25 @@
 -- if mods["charcoal-kiln"] then
 --     local charcoal_kiln_lib = require("__charcoal-kiln__.lib")
 --
---     charcoal_kiln_lib.add_charcoal_recipe {
---         order = "d[wooden-example]",
---         from_item = "wooden-example",
---         from_icon = "__some-example-mod__/graphics/icons/wooden-example.png",
---         from_amount = 1,  -- Optional, this is the default value.
---         to_amount = 4,    -- Should be chosen depending on how much wood the original recipe used.
---     }
+--     -- Remove this condition if the recipe should always be added, e.g. if it is a custom wooden material like raw
+--     -- wood or wooden planks. Keep the condition for recipes that recycle wooden entities (like chests) to charcoal.
+--     if charcoal_kiln_lib.settings.enable_additional_recipes then
+--         charcoal_kiln_lib.add_charcoal_recipe {
+--             order = "d[wooden-example]",
+--             from_item = "wooden-example",
+--             from_icon = "__some-example-mod__/graphics/icons/wooden-example.png",
+--             from_amount = 1,  -- Optional, this is the default value.
+--             to_amount = 4,    -- Should be chosen depending on how much wood the original recipe used.
+--         }
+--     end
 -- end
 
 local charcoal_kiln_lib = {}
+
+-- Easy access to startup settings
+charcoal_kiln_lib.settings = {
+    enable_additional_recipes = settings.startup["charcoal-kiln-enable-additional-recipes"].value,
+}
 
 -- Generate a prototype for a new charcoal recipe from a given input item, e.g. "Charcoal from wooden chest".
 -- The icon will be automatically generated from the parameter "from_icon" and "from_icon_size" (optional).

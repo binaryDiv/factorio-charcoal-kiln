@@ -31,9 +31,9 @@ data:extend {
     },
 }
 
--- Generate recipes for charcoal from wood and other wooden items (if they exist)
+-- Generate recipe for charcoal from wood.
 -- This also adds the new recipes to the effects of the charcoal kiln technology.
-if data.raw.item["wood"] then
+if data.raw.item["wood"] ~= nil then
     charcoal_kiln_lib.add_charcoal_recipe {
         order = "a-a[wood]",
         from_item = "wood",
@@ -41,20 +41,23 @@ if data.raw.item["wood"] then
     }
 end
 
-if data.raw.item["wooden-chest"] then
-    charcoal_kiln_lib.add_charcoal_recipe {
-        order = "b-a[wooden-chest]",
-        from_item = "wooden-chest",
-        from_icon = "__base__/graphics/icons/wooden-chest.png",
-    }
-end
+-- If enabled, generate additional recipes for wooden items (if they exist) as an early way of recycling.
+if charcoal_kiln_lib.settings.enable_additional_recipes then
+    if data.raw.item["wooden-chest"] ~= nil then
+        charcoal_kiln_lib.add_charcoal_recipe {
+            order = "b-a[wooden-chest]",
+            from_item = "wooden-chest",
+            from_icon = "__base__/graphics/icons/wooden-chest.png",
+        }
+    end
 
-if data.raw.item["small-electric-pole"] then
-    charcoal_kiln_lib.add_charcoal_recipe {
-        order = "c-a[small-electric-pole]",
-        from_item = "small-electric-pole",
-        from_icon = "__base__/graphics/icons/small-electric-pole.png",
-        from_amount = 2,
-        to_amount = 1,
-    }
+    if data.raw.item["small-electric-pole"] ~= nil then
+        charcoal_kiln_lib.add_charcoal_recipe {
+            order = "c-a[small-electric-pole]",
+            from_item = "small-electric-pole",
+            from_icon = "__base__/graphics/icons/small-electric-pole.png",
+            from_amount = 2,
+            to_amount = 1,
+        }
+    end
 end
