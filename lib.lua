@@ -51,7 +51,7 @@ function charcoal_kiln_lib.generate_charcoal_recipe_prototype(params)
         type = "recipe",
         name = "charcoal-from-" .. from_item,
         localised_name = charcoal_kiln_lib.generate_charcoal_recipe_localised_name(from_item),
-        category = "charcoal-kiln",
+        categories = { "charcoal-kiln" },
         subgroup = "charcoal",
         order = params.order or ("z[" .. from_item .. "]"),
         enabled = params.enabled or false,
